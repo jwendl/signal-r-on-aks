@@ -1,0 +1,24 @@
+environment: development
+
+apphost: k8s
+
+label:
+  name: syncservice
+
+azure:
+  resourceGroupName: SignalROnAks
+
+container:
+  name: syncservice
+  pullPolicy: IfNotPresent
+  image: jwsignalracr.azurecr.io/syncservice
+  tag: v2
+  port: 5500
+replicas: 2
+
+redis:
+  redisConnectionString: redis-1595918854-master.default.svc.cluster.local,abortConnect=false,allowAdmin=true,password=GhVjX4nSwe
+
+service:
+  port: 5500
+  type: ClusterIP

@@ -1,0 +1,4 @@
+.terraform
+.env.local
+tf.plan
+*.tfstate
