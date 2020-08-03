@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Wearables.SyncService.IntegrationTest": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "SYNC_SERVICE_PATH": "http://jwsignalraks.westus2.cloudapp.azure.com/startTimerHub"
+      }
+    }
+  }
+}
