@@ -1,4 +1,11 @@
 .terraform
-.env.local
 tf.plan
-*.tfstate
+*.tfvars.local
+*.tfvars.bak
+*tfstate*
+*tfplan*
+
+.vscode/
+
+# Crash log files
+crash.log

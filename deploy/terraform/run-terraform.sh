@@ -1,10 +1,15 @@
 #!/bin/bash
 
-set -a
-[[ -f .env.local ]] && . ./.env.local
+pushd root
+
+cp terraform.tfvars terraform.tfvars.bak
+cp terraform.tfvars.local terraform.tfvars
 
 terraform init
-terraform plan -out tf.plan
+terraform plan -out tf.plan --var-file terraform.tfvars
 terraform apply tf.plan
 
-set +a
+cp terraform.tfvars.bak terraform.tfvars
+rm tf.plan
+
+popd

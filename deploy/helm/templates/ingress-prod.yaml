@@ -3,14 +3,21 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress-prod
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
+  tls:
+  - hosts:
+    - jwsignalraks.westus2.cloudapp.azure.com
+    secretName: tls-secret
   rules:
-  - http:
+  - host: jwsignalraks.westus2.cloudapp.azure.com
+    http:
       paths:
-      - backend:
+      - path: /
+        backend:
           serviceName: {{ .Release.Name }}-service-prod
           servicePort: {{ .Values.service.port }}

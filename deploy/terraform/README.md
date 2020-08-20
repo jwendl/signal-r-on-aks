@@ -1,8 +1,10 @@
-# Getting Started
+# Terraform Usage
 
-This will describe how I run terraform for this repository.
+## Technologies Used
 
-## Locally
+- Terraform
+
+## Running Terraform Locally
 
 Running this locally will require a few steps to get setup.
 
@@ -21,34 +23,18 @@ terraform apply tf.plan
 
 From provided shell script:
 
-Please copy .env to .env.local and updated .env.local with names defined here.
+Please copy terraform.tfvars to terraform.tfvars.local and update the terraform.tfvars.local with names defined here.
 
-| Variable | Description |
-| -------- | ----------- |
-| TF_VAR_resource_group_name | The resource group name |
-| TF_VAR_location | The location for all of the resources |
-| TF_VAR_resource_prefix | The prefix for all of the resources |
+| Variable                   | Description                           |
+| -------------------------- | ------------------------------------- |
+| TF_VAR_resource_group_name | The resource group name               |
+| TF_VAR_location            | The location for all of the resources |
+| TF_VAR_resource_prefix     | The prefix for all of the resources   |
 
 Once that's done, then run the shell script 
 
 ``` bash
 ./run-terraform.sh
-```
-
-## Adding AcrPull to ACR for the Cluster
-
-We need to do this manually at the moment because the azurerm_role_assignment terraform task is replying with a 400 bad request for some reason. Just run the following Azure CLI.
-
-``` bash
-az aks update --resource-group SocketOnAks --name jwsocketaks --attach-acr jwsocketacr
-```
-
-## Adding public ip...
-
-We need to do this manually too because it needs to exist in the hidden cluster resource group
-
-``` bash
-az network public-ip create --resource-group MC_SocketOnAks_jwsocketaks_westus2 --name jwsocketakspip --sku Basic --allocation-method static --query publicIp.ipAddress --output tsv
 ```
 
 ## Azure Pipelines

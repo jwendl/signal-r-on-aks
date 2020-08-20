@@ -1,4 +1,5 @@
 environment: development
+emailAddress: juswen@microsoft.com
 
 apphost: k8s
 
